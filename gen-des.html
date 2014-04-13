@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/tripledes.js"></script>
+	<link rel="stylesheet" type="text/css" href="">
+</head>
+
+<body>
+	<script>
+		var message = "Efficiently exploit backward-compatible outside the box thinking via standardized potentialities. Phosfluorescently evolve high-quality deliverables before an expanded array of meta-services. Uniquely unleash transparent e-commerce vis-a-vis fully tested information. Authoritatively predominate bleeding-edge methods of empowerment before goal-oriented supply chains. Energistically whiteboard enterprise-wide data with bricks-and-clicks ideas."
+
+		 // Encrypt Message
+		 // params plaintext message, key
+		 // Generate DES key (random number)
+		generateDESKey();
+		 // Encrypt Key
+		 // Pad the Message
+		 // Encrypt Message
+		 // Attach sender's public key to the message
+
+		 // Decrypt Message
+
+		 // Generate 128bit Triple DES Key
+		function generateDESKey() {
+			var i;
+			var rNumber;
+			var sNumber = "";
+			for (i = 0; i < 127; i++) {
+				rNumber = Math.floor((Math.random() * 2) + 0);
+				if (i % 8 == 0) {
+					rNumber = 1;
+				}
+				sNumber = sNumber + rNumber;
+			}
+			var bin = parseInt(sNumber, 2);
+
+			console.log(sNumber);
+			console.log(bin);
+		}
+	</script>
+</body>
+
+</html>
+
