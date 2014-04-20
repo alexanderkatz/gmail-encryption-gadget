@@ -5,30 +5,39 @@
 	<meta charset="utf-8">
 	<title></title>
 	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/tripledes.js"></script>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-utf16-min.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="">
 </head>
 
 <body>
 	<script>
-		var message = "Efficiently exploit backward-compatible outside the box thinking via standardized potentialities. Phosfluorescently evolve high-quality deliverables before an expanded array of meta-services. Uniquely unleash transparent e-commerce vis-a-vis fully tested information. Authoritatively predominate bleeding-edge methods of empowerment before goal-oriented supply chains. Energistically whiteboard enterprise-wide data with bricks-and-clicks ideas."
+		var message = "ilonasHolisticly facilitate market-driven resources via holistic meta-services. Collaboratively deliver parallel models through future-proof value. Assertively matrix innovative e-tailers and robust potentialities. Objectively morph out-of-the-box e-tailers and optimal data. Uniquely procrastinate world-class channels via strategic ROI.";
 
 		 // Encrypt Message
 		 // params plaintext message, key
 		 // Generate DES key (random number)
-		generateDESKey();
-		 // Encrypt Key
-		 // Pad the Message
-		 // Encrypt Message
-		 // Attach sender's public key to the message
+		var desKey = generateDESKey();
+		var latinKey = CryptoJS.enc.Utf16.stringify(desKey);
 
+		 // ToDoIst Encrypt Key
+		 // Pad the Message
+		var paddedMess = padding(message);
+		 // Encrypt Message
+		 // ToDoIst Attach sender's public key to the message
+		var encrypted = CryptoJS.DES.encrypt(paddedMess, latinKey);
+		console.log(encrypted.key.toString());
 		 // Decrypt Message
+		 //var decrypted = CryptoJS.DES.decrypt(encrypted, desKey.toString);
+		 //console.log("decrypted: " + decrypted.toString());
+
 
 		 // Generate 128bit Triple DES Key
 		function generateDESKey() {
 			var i;
 			var rNumber;
 			var sNumber = "";
-			for (i = 0; i < 127; i++) {
+			for (i = 0; i < 63; i++) {
 				rNumber = Math.floor((Math.random() * 2) + 0);
 				if (i % 8 == 0) {
 					rNumber = 1;
@@ -37,8 +46,44 @@
 			}
 			var bin = parseInt(sNumber, 2);
 
-			console.log(sNumber);
-			console.log(bin);
+			//var utf = bin.toString(16)
+
+			console.log("generateDESKey string: " + sNumber);
+			console.log("generateDESKey: " + bin);
+
+			return bin;
+		}
+
+		 // Count the number of bits in the message
+		 // If the bits is not a multiple of 64, they should
+		 // Add the number of bits to make it a multiple of 64
+		 // Concatenate
+		 // Padding
+		function padding(mess) {
+			console.log("message length " + mess.length * 16);
+			// Length of message in bits
+			var bits = mess.length * 16;
+			// Number of null characters needed to add to message
+			var underflow = 4 - ((bits % 64) / 16);
+			console.log("underflow: " + underflow);
+			var NUL = '\0';
+			var i;
+			for (i = 0; i < underflow; i++) {
+				mess += NUL;
+			}
+			console.log("message length with padding: " + mess.length * 16);
+			//now, message is padded to 64-bit blocks.
+			//add a 64-bit block containing underflow as last 6 bits
+			var endNum = parseInt(underflow, 10);
+			console.log("endNum: " + endNum);
+			// Final 64 bit block which contains endNum
+			for (i = 0; i < 3; i++) {
+				mess += NUL;
+			}
+			mess += endNum;
+			console.log(mess.length * 16);
+
+			return mess;
 		}
 	</script>
 </body>
