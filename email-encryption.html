@@ -4,27 +4,44 @@
 <head>
 	<meta charset="utf-8">
 	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+
+
 </head>
 
 <body>
-	<p>Message</p>
+	<!--Message-->
 	<div id="message">
-		<div id="message-text"></div>
-	</div>
-	<p>Secret Key</p>
-	<p id="secrets"></p>
-	<p>Encrypted Message</p>
-	<div id="encrytped-message" class="box">
-	</div>
-	<p>Decrypted Message</p>
+		<h1>Message</h1>
+		<textarea id="message-text"></textarea>
+		<button id="encrypt-button" class="btn btn-info">Encrypt Message</button>
+		<button id="decrypt-button" class="btn btn-info">Decrypt Message</button>
 
-	<div id="decrypted-message" class="box">
 	</div>
 
-	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/tripledes.js"></script>
-	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-utf16-min.js"></script>
-	<script src="/js/email-encryption.js"></script>
+	<!--
+<p style="float:left">Secret Key</p>
+<p style="float:left" id="secrets"></p>
+-->
+	<!--Wrapper for Encrypt Decrypt Section-->
+	<div id="ed-wrapper">
+		<div id="encrypted-message" class="section">
+			<h1>Encrypted Message</h1>
+			<div id="encrypted-text" class="box ">
+			</div>
+		</div>
+		<div id="decrypted-message" class="section">
+			<h1>Decrypted Message</h1>
+			<div id="decrypted-text"></div>
+		</div>
+	</div>
+
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/tripledes.js "></script>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-utf16-min.js "></script>
+	<script src="/js/email-encryption.js "></script>
 
 </body>
 
