@@ -1,0 +1,28 @@
+
+p{  width: 800px;
+	text-align: left;
+	margin: auto;
+	margin-top: 10px;}
+.box{
+	margin: auto;	
+	margin-top: 20px;
+	border: solid 1px;	
+}
+
+#message{
+	width: 800px;
+	height: 200px;
+	background: rgba(0, 226, 255, 0.52);
+	margin: auto;
+}
+#message-text{padding: 20px;}
+
+#encrytped-message{
+	width: 800px;
+	height: 300px;
+}
+
+#decrypted-message{
+	width: 800px;
+	height: 300px;
+}
