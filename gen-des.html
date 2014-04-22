@@ -18,9 +18,10 @@
 		 // params plaintext message, key
 		 // Generate DES key (random number)
 		var desKey = generateDESKey();
-		var latinKey = CryptoJS.enc.Utf16.stringify(desKey);
-        var rando = ((Math.random() + 1).toString(36))
-        console.log("Rando :" + rando);
+		//var latinKey = CryptoJS.enc.Utf16.stringify(desKey);
+        //var rando = ((Math.random() + 1).toString(36) + (Math.random() + 1).toString(36));
+        
+        console.log("Rando :" + desKey);
 
 		 // ToDoIst Encrypt Key
 		 // Pad the Message
@@ -53,7 +54,9 @@
 			console.log("generateDESKey string: " + sNumber);
 			console.log("generateDESKey: " + bin);
 
-			return bin;
+            var rando = ((Math.random() + 1).toString(36) + (Math.random() + 1).toString(36));
+            
+			return rando;
 		}
 
 		 // Count the number of bits in the message
