@@ -19,6 +19,8 @@
 		 // Generate DES key (random number)
 		var desKey = generateDESKey();
 		var latinKey = CryptoJS.enc.Utf16.stringify(desKey);
+        var rando = ((Math.random() + 1).toString(36))
+        console.log("Rando :" + rando);
 
 		 // ToDoIst Encrypt Key
 		 // Pad the Message
