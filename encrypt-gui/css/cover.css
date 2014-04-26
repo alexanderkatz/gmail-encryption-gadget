@@ -1,0 +1,26 @@
+html,
+body {
+  	height: 100%;
+	background: url('../images/ocean.jpg') no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+body {
+  color: #fff;
+}
+
+div{color:black}
+
+#genRSAB{margin-bottom: 10px}
+
+#title{text-align: center}
+
+#mess-buttons{margin-top: 20px;}
+
+#encrypted, #decrypted, #privKey, #pubKey{
+	min-height: 150px;
+	color: black;
+}
+#encrypted{overflow: auto}
+
+#encryptedPassphrase, #pubKey, #privKey{word-wrap: break-word}

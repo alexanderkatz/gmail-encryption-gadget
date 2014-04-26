@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Encrypt</title>
+	<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/cover.css" rel="stylesheet">
+
+</head>
+
+<body>
+	<div id="title" class="page-header">
+		<h1>Email Encryption
+			<br>
+			<small>Because Ilona is Paranoid</small>
+		</h1>
+	</div>
+	<div class="container">
+		<!--MESSAGE-->
+		<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Message</h3>
+					</div>
+					<div class="panel-body">
+						<textarea id="message" class="form-control" rows="3"></textarea>
+						<div class="row">
+							<div id="mess-buttons" class="col-md-6">
+								<button id="encryptB" type="button" class="btn btn-default">Encrypt</button>
+								<button id="decryptB" type="button" class="btn btn-default">Decrypt</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--SECRET PASSWORD-->
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Secret Passphrase</h3>
+					</div>
+					<div class="panel-body">
+						<textarea id="secretKey" class="form-control" rows="3"></textarea>
+						<div class="row">
+							<div id="mess-buttons" class="col-md-8">
+								<button id="useKeyB" type="button" class="btn btn-default">Use My Key</button>
+								<button id="genKeyB" type="button" class="btn btn-default">Generate New Key</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--ENCRYPTED AND DECRYPTED MESSAGES-->
+		<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Encrypted Message</h3>
+					</div>
+					<div id="encrypted" class="panel-body">
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Decrypted Message</h3>
+					</div>
+					<div id="decrypted" class="panel-body">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--RSA-->
+		<div class="page-header">
+			<h1>
+				<small>RSA Encryption</small>
+			</h1>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<button id="genRSAB" type="button" class="btn btn-default">Generate RSA Keys</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Private Key</h3>
+					</div>
+					<div id="privKey" class="panel-body">
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Public Key</h3>
+					</div>
+					<div id="pubKey" class="panel-body">
+					</div>
+				</div>
+				<!--Encrypt Passphrase-->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Encrypt Passphrase</h3>
+					</div>
+					<div class="panel-body">
+						<p>Your passphrase is</p>
+						<div id="encryptPassphrase"></div>
+						<br>
+						<div id="encryptedPassphrase"></div>
+
+						<button id="encryptPPB" type="button" class="btn btn-default">Encrypt</button>
+						<button id="decryptPPB" type="button" class="btn btn-default">Decrypt</button>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/crypto.js"></script>
+	<script src="js/encryption.js"></script>
+	<script src="jsencrypt-master/bin/jsencrypt.js"></script>
+</body>
+
+</html>
