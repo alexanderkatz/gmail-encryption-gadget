@@ -12,7 +12,7 @@ document.getElementById('genKeyB').addEventListener("click", function () {
 
 // Generate DES Key
 function generateDESKey() {
-	var rando = ((Math.random() + 1).toString(36) + (Math.random() + 1).toString(36)).substring(0, 24);
+	var rando = ((Math.random() + 1).toString(36) + (Math.random() + 1).toString(36)).substring(3, 28);
 	document.getElementById('secretKey').value = rando;
 	console.log("rando " + rando);
 	document.getElementById('encryptPassphrase').innerHTML = rando;

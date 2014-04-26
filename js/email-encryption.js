@@ -5,7 +5,7 @@
 var key = generateDESKey();
 
 function generateDESKey() {
-	var rando = ((Math.random() + 1).toString(36) + (Math.random() + 1).toString(36)).substring(0, 24);
+	var rando = ((Math.random() + 1).toString(36) + (Math.random() + 1).toString(36)).substring(2, 28);
 	//document.getElementById('secrets').innerHTML = rando;
 	return rando;
 }
