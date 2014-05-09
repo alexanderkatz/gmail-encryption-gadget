@@ -7,12 +7,11 @@ var key = generateDESKey();
 document.getElementById('genKeyB').addEventListener("click", function () {
 	key = generateDESKey();
 	document.getElementById('encryptPassphrase').innerHTML = key;
-
 }, false);
 
 // Generate DES Key
 function generateDESKey() {
-	var rando = ((Math.random() + 1).toString(36) + (Math.random() + 1).toString(36).substring(3,20)).substring(3, 28);
+	var rando = ((Math.random() + 1).toString(36) + (Math.random() + 1).toString(36).substring(3, 20)).substring(3, 28);
 	document.getElementById('secretKey').value = rando;
 	console.log("rando " + rando);
 	document.getElementById('encryptPassphrase').innerHTML = rando;
@@ -49,17 +48,6 @@ decryptButton.addEventListener("click", function () {
 	var d_msg = decrypted.toString(CryptoJS.enc.Utf8);
 	document.getElementById('decrypted').innerHTML = d_msg;
 }, false);
-
-
-
-
-// put random string in as the secret key
-// encrypt message
-// make random string
-// encrypt using RSA
-
-// encrypt secret passphrase with js encrypt
-
 
 // RSA ENCRYPTION, TAKEN FROM JS ENCRYPT ***********************************************
 

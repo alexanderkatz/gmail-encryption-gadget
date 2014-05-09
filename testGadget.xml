@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+	<ModulePrefs title="Test Gadget" />
+	<Require feature="tabs" />
+	<Content type="html">
+		<![CDATA[ 
+		<style>
+			.panel {
+				width: 100%;
+				height: auto;
+				border: solid 2px;
+				margin-bottom: 10px;
+			}
+			.panel-title {
+				height: auto;
+				text-align: center;
+				background: orange;
+				font-size: 18px;
+			}
+			.buttons {
+				width: 100%;
+				height: 30px;
+			}
+			button {
+				margin-left: 5px;
+			}
+			textarea {
+				width: 100%;
+			}
+		</style>
+		<div class="panel">
+		<h1 class="panel-title">Message</h1>
+		<textarea id="message">
+		</textarea>
+		<div class="buttons">
+			<button id="encryptB">Encrypt</button>
+			<button id="decryptB">Decrypt</button>
+		</div>
+	</div>
+	<div class="panel">
+		<h1 class="panel-title">Press Generate or Enter Your Passphrase</h1>
+		<textarea id="secretKey">
+		</textarea>
+		<div class="buttons">
+			<button id="genKeyB">Generate</button>
+		</div>
+	</div>
+	<div class="panel">
+		<h1 class="panel-title">Generate RSA Keys</h1>
+		<textarea id="secretKey">
+		</textarea>
+		<textarea id="secretKey">
+		</textarea>
+		<div class="buttons">
+			<button id="genRSAB">Generate</button>
+		</div>
+	</div>
+	<!--JavaScript SCRIPT----------------------------------------------
+-------------------------------------------------------------->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/tripledes.js"></script>	<script>
+// Put in placeholder message
+document.getElementById('message').innerHTML = "This is the very secret message";
+		
+// Generate random key to encrypt message
+var key = generateDESKey();
+
+// Event listener for generate new key
+document.getElementById('genKeyB').addEventListener("click", function () {
+	key = generateDESKey();
+}, false);
+
+// Generate DES Key
+function generateDESKey() {
+	var rando = ((Math.random() + 1).toString(36) + (Math.random() + 1).toString(36).substring(3, 20)).substring(3, 28);
+	document.getElementById('secretKey').value = rando;
+	console.log("rando " + rando);
+	//document.getElementById('encryptPassphrase').innerHTML = rando;
+	return rando;
+}
+
+// Button so user can specify their own key
+//document.getElementById('useKeyB').addEventListener("click", function () {
+//	key = document.getElementById('secretKey').value;
+//	document.getElementById('encryptPassphrase').innerHTML = key;
+//}, false);
+
+// Variable to store Encrypted Message
+var e_msg;
+
+// ENCRYPT MESSAGE
+// Get encrypt button and add an event listener
+var encryptButton = document.getElementById('encryptB');
+encryptButton.addEventListener("click", function () {
+	var message = document.getElementById('message').value;
+	console.log("mt: " + message);
+	console.log("key: " + key);
+	var encrypted = CryptoJS.TripleDES.encrypt(message, key);
+	e_msg = encrypted.toString();
+	document.getElementById('message').innerHTML = e_msg;
+}, false);
+
+// DECRYPT MESSAGE
+// Get decrypt button and add an event listener
+var decryptButton = document.getElementById('decryptB');
+decryptButton.addEventListener("click", function () {
+	var decrypted = CryptoJS.TripleDES.decrypt(e_msg, key);
+	var d_msg = decrypted.toString(CryptoJS.enc.Utf8);
+	document.getElementById('message').innerHTML = d_msg;
+}, false);
+		// CRYPTO.JS ----------------------------------------------------------------------------------------
+		 
+		// JS-ENCRYPT ----------------------------------------------------------------------------------------
+	</script>
+		]]>
+	</Content>
+</Module>

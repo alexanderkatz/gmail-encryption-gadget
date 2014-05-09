@@ -4,14 +4,10 @@
 h1{
 	padding: 20px;
 }
-
 p{  width: 800px;
 	text-align: left;
 	margin: auto;
 	margin-top: 10px;}
-
-
-
 #message{
 	width: 900px;
 	height: auto;
@@ -38,5 +34,4 @@ p{  width: 800px;
 	float: left;
 	margin-left: 100px;
 }
-
 #encrypt-button, #decrypt-button{margin-bottom: 10px;margin-left: 10px}

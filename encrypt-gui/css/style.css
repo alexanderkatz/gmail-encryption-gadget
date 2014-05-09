@@ -1,26 +1,13 @@
-html,
-body {
-  	height: 100%;
-	background: url('../images/workspace4.jpg') no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
-}
-body {
-  color: #fff;
-}
-
+body{background: url('../images/grand-canyon-hd720.jpg') no-repeat;
+background-attachment: fixed;
+background-size: cover;}
 div{color:black}
-
 #genRSAB{margin-bottom: 10px}
-
 #title{text-align: center}
-
 #mess-buttons{margin-top: 20px;}
-
 #encrypted, #decrypted, #privKey, #pubKey{
 	min-height: 150px;
 	color: black;
 }
 #encrypted{overflow: auto}
-
 #encryptedPassphrase, #pubKey, #privKey{word-wrap: break-word}

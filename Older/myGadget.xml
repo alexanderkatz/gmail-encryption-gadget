@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--XML is a general purpose markup language. It describes structured data in a way that both humans and computers can read and write.-->
+<Module>
+	<ModulePrefs title="hello world example" />
+	<!--
+    This says that the content type is html
+-->
+	<Content type="html">
+		<![CDATA[ 
+		<link href="https://alexkatz.me/gadget/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://alexkatz.me/gadget/css/cover.css" rel="stylesheet">
+
+		<!--Linked Libraries-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/tripledes.js"></script>
+		<script src="https://alexkatz.me/gadget/js/bootstrap.min.js"></script>
+		<script src="https://alexkatz.me/gadget/jsencrypt-master/bin/jsencrypt.js"></script>
+
+		<script type="text/javascript">
+			// Put in placeholder message
+			document.getElementById('message').innerHTML = "This is the very secret message";
+
+			var key = generateDESKey();
+
+			 // generate new key
+			document.getElementById('genKeyB').addEventListener("click", function() {
+				key = generateDESKey();
+				document.getElementById('encryptPassphrase').innerHTML = key;
+
+			}, false);
+
+			 // Generate DES Key
+			function generateDESKey() {
+				var rando = ((Math.random() + 1).toString(36) + (Math.random() + 1).toString(36).substring(3, 20)).substring(3, 28);
+				document.getElementById('secretKey').value = rando;
+				console.log("rando " + rando);
+				document.getElementById('encryptPassphrase').innerHTML = rando;
+				return rando;
+			}
+
+			 // Button so user can specify their own key
+			document.getElementById('useKeyB').addEventListener("click", function() {
+				key = document.getElementById('secretKey').value;
+				document.getElementById('encryptPassphrase').innerHTML = key;
+			}, false);
+
+			 // Variable to store Encrypted Message
+			var e_msg;
+
+
+			 // ENCRYPT MESSAGE
+			 // Get encrypt button and add an event listener
+			var encryptButton = document.getElementById('encryptB');
+			encryptButton.addEventListener("click", function() {
+				var message = document.getElementById('message').value;
+				console.log("mt: " + message);
+				console.log("key: " + key);
+				var encrypted = CryptoJS.TripleDES.encrypt(message, key);
+				e_msg = encrypted.toString();
+				document.getElementById('encrypted').innerHTML = e_msg;
+			}, false);
+
+			 // DECRYPT MESSAGE
+			 // Get decrypt button and add an event listener
+			var decryptButton = document.getElementById('decryptB');
+			decryptButton.addEventListener("click", function() {
+				var decrypted = CryptoJS.TripleDES.decrypt(e_msg, key);
+				var d_msg = decrypted.toString(CryptoJS.enc.Utf8);
+				document.getElementById('decrypted').innerHTML = d_msg;
+			}, false);
+
+			 // RSA ENCRYPTION, TAKEN FROM JS ENCRYPT ***********************************************
+
+			var crypt;
+			var encryptedPass;
+
+			 // If they wish to generate new keys.
+			$('#genRSAB').click(function() {
+				// Hard coded key size
+				var keySize = 1024;
+				crypt = new JSEncrypt({
+					default_key_size: keySize
+				});
+				crypt.getKey();
+				console.log("hey" + crypt.getPrivateKey());
+				document.getElementById('privKey').innerHTML = crypt.getPrivateKey();
+				document.getElementById('pubKey').innerHTML = crypt.getPublicKey();
+			});
+
+			 // Encrypt Passphrase
+			$('#encryptPPB').click(function() {
+				if (!crypt) {
+					window.alert("Please generate RSA keys");
+				} else {
+					encryptedPass = crypt.encrypt(key);
+					document.getElementById('encryptedPassphrase').innerHTML = "Your encrypted passphrase is \n" + encryptedPass;
+				}
+			});
+			 // Decrypt Passphrase
+			$('#decryptPPB').click(function() {
+				var decryptedPass = crypt.decrypt(encryptedPass);
+				document.getElementById('encryptedPassphrase').innerHTML = "Your decrypted passphrase is \n" + decryptedPass;
+			});
+		</script>
+<!--End of script-->
+
+		<div class="container">
+			<!--MESSAGE-->
+			<div class="row">
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Message</h3>
+						</div>
+						<div class="panel-body">
+							<textarea id="message" class="form-control" rows="3"></textarea>
+							<div class="row">
+								<div id="mess-buttons" class="col-md-6">
+									<button id="encryptB" type="button" class="btn btn-default">Encrypt</button>
+									<button id="decryptB" type="button" class="btn btn-default">Decrypt</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--SECRET PASSWORD-->
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Secret Passphrase</h3>
+						</div>
+						<div class="panel-body">
+							<textarea id="secretKey" class="form-control" rows="3"></textarea>
+							<div class="row">
+								<div id="mess-buttons" class="col-md-8">
+									<button id="useKeyB" type="button" class="btn btn-default">Use My Key</button>
+									<button id="genKeyB" type="button" class="btn btn-default">Generate New Key</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--ENCRYPTED AND DECRYPTED MESSAGES-->
+			<div class="row">
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Encrypted Message</h3>
+						</div>
+						<div id="encrypted" class="panel-body">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Decrypted Message</h3>
+						</div>
+						<div id="decrypted" class="panel-body">
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--RSA-->
+			<div class="page-header">
+				<h1>
+					<small>RSA Encryption</small>
+				</h1>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<button id="genRSAB" type="button" class="btn btn-default">Generate RSA Keys</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Private Key</h3>
+						</div>
+						<div id="privKey" class="panel-body">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Public Key</h3>
+						</div>
+						<div id="pubKey" class="panel-body">
+						</div>
+					</div>
+					<!--Encrypt Passphrase-->
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Encrypt Passphrase</h3>
+						</div>
+						<div class="panel-body">
+							<p>Your passphrase is</p>
+							<div id="encryptPassphrase"></div>
+							<br>
+							<div id="encryptedPassphrase"></div>
+
+							<button id="encryptPPB" type="button" class="btn btn-default">Encrypt</button>
+							<button id="decryptPPB" type="button" class="btn btn-default">Decrypt</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		]]>
+	</Content>
+</Module>
