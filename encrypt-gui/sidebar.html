@@ -95,7 +95,7 @@
 			document.getElementById('message').innerHTML = d_msg;
 		}, false);
 
-		 // RSA  CODE
+// RSA-CODE ----------------------------------------------------------------------------------------
 		var crypt;
 		var encryptedPass;
 
@@ -129,9 +129,6 @@
 
 		 
 // JS-ENCRYPT ----------------------------------------------------------------------------------------
-/*
- <a href="http://kjur.github.io/jsrsasign/license/">MIT License</a>
-*/
 var JSEncryptExports={};
 (function(Y){function e(a,b,c){null!=a&&("number"==typeof a?this.fromNumber(a,b,c):null==b&&"string"!=typeof a?this.fromString(a,256):this.fromString(a,b))}function m(){return new e(null)}function Z(a,b,c,d,f,g){for(;0<=--g;){var h=b*this[a++]+c[d]+f;f=Math.floor(h/67108864);c[d++]=h&67108863}return f}function $(a,b,c,d,f,g){var h=b&32767;for(b>>=15;0<=--g;){var k=this[a]&32767,e=this[a++]>>15,x=b*k+e*h,k=h*k+((x&32767)<<15)+c[d]+(f&1073741823);f=(k>>>30)+(x>>>15)+b*e+(f>>>30);c[d++]=k&1073741823}return f}
 function aa(a,b,c,d,f,g){var h=b&16383;for(b>>=14;0<=--g;){var k=this[a]&16383,e=this[a++]>>14,x=b*k+e*h,k=h*k+((x&16383)<<14)+c[d]+f;f=(k>>28)+(x>>14)+b*e;c[d++]=k&268435455}return f}function S(a,b){var c=I[a.charCodeAt(b)];return null==c?-1:c}function z(a){var b=m();b.fromInt(a);return b}function J(a){var b=1,c;0!=(c=a>>>16)&&(a=c,b+=16);0!=(c=a>>8)&&(a=c,b+=8);0!=(c=a>>4)&&(a=c,b+=4);0!=(c=a>>2)&&(a=c,b+=2);0!=a>>1&&(b+=1);return b}function C(a){this.m=a}function D(a){this.m=a;this.mp=a.invDigit();
@@ -234,8 +231,7 @@ a.hasOwnProperty("e")};p.prototype.hasPrivateKeyProperty=function(a){a=a||{};ret
 typeof a?this.parseKey(a):(this.hasPrivateKeyProperty(a)||this.hasPublicKeyProperty(a))&&this.parsePropertiesFrom(a))};H.prototype=new p;H.prototype.constructor=H;l=function(a){a=a||{};this.default_key_size=parseInt(a.default_key_size)||1024;this.default_public_exponent=a.default_public_exponent||"010001";this.log=a.log||!1;this.key=null};l.prototype.setKey=function(a){this.log&&this.key&&console.warn("A key was already set, overriding existing.");this.key=new H(a)};l.prototype.setPrivateKey=function(a){this.setKey(a)};
 l.prototype.setPublicKey=function(a){this.setKey(a)};l.prototype.decrypt=function(a){try{return this.getKey().decrypt(ca(a))}catch(b){return!1}};l.prototype.encrypt=function(a){try{return P(this.getKey().encrypt(a))}catch(b){return!1}};l.prototype.getKey=function(a){if(!this.key){this.key=new H;if(a&&"[object Function]"==={}.toString.call(a)){this.key.generateAsync(this.default_key_size,this.default_public_exponent,a);return}this.key.generate(this.default_key_size,this.default_public_exponent)}return this.key};
 l.prototype.getPrivateKey=function(){return this.getKey().getPrivateKey()};l.prototype.getPrivateKeyB64=function(){return this.getKey().getPrivateBaseKeyB64()};l.prototype.getPublicKey=function(){return this.getKey().getPublicKey()};l.prototype.getPublicKeyB64=function(){return this.getKey().getPublicBaseKeyB64()};Y.JSEncrypt=l})(JSEncryptExports);var JSEncrypt=JSEncryptExports.JSEncrypt;
-	
-	</script>
+</script>
     
 </body>
 
