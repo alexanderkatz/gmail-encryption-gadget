@@ -22,17 +22,20 @@
 			<button id="decryptB">Decrypt</button>
 		</div>
 	</div>
-	<div class="panel">
-		<h1 class="panel-title">Press Generate or Enter Your Passphrase</h1>
-		<textarea id="secretKey">
+	<div class:"panel">
+		<h1 class="panel-title">Recipient's Public Key</h1>
+		<textarea id="rpub">&#91;Paste their key here&#93;
 		</textarea>
 		<div class="buttons">
-			<button id="genKeyB">Generate</button>
-			<button id="encryptPPB">Encrypt Passphrase</button>
-
+			<button id="useRpub">Use this key</button>
+			<button id="clearRpub">Clear this field</button>
 		</div>
 	</div>
-	<!--RSA SECTION-->
+	<div class="panel">
+		<h1 class="panel-title">Email this encrypted content!</h1>
+		<textarea id="encryptedcontent">
+		</textarea>
+	</div>
 	<div class="panel">
 		<h1 class="panel-title">Generate RSA Keys</h1>
 		<textarea id="privKey">
@@ -53,6 +56,7 @@
 
 		 // Generate random key to encrypt message
 		var key = generateDESKey();
+		var target_pub = "";
 
 		 // Event listener for generate new key
 		document.getElementById('genKeyB').addEventListener("click", function() {
@@ -62,7 +66,7 @@
 		 // Generate DES Key
 		function generateDESKey() {
 			var rando = ((Math.random() + 1).toString(36) + (Math.random() + 1).toString(36).substring(3, 20)).substring(3, 28);
-			document.getElementById('secretKey').value = rando;
+			//document.getElementById('secretKey').value = rando;
 			//document.getElementById('encryptPassphrase').innerHTML = rando;
 			return rando;
 		}
@@ -81,9 +85,11 @@
 		var encryptButton = document.getElementById('encryptB');
 		encryptButton.addEventListener("click", function() {
 			var message = document.getElementById('message').value;
+			key = generateDESKey();
 			var encrypted = CryptoJS.TripleDES.encrypt(message, key);
 			e_msg = encrypted.toString();
-			document.getElementById('message').innerHTML = e_msg;
+			//encrypt key using target_pub
+			//document.getElementById('message').innerHTML = e_msg;
 		}, false);
 
 		 // DECRYPT MESSAGE
@@ -98,6 +104,17 @@
 // RSA-CODE ----------------------------------------------------------------------------------------
 		var crypt;
 		var encryptedPass;
+		
+		//when you click "Use This Key", all encryptions are done using the supplied public key
+		document.getElementById('useRpub').addEventListener("click", function() {
+			target_pub = document.getELementById('rpub').value;
+		}, false);
+		
+		
+		
+		$('#clearRpub').click(function() {
+			document.getElementById('rpub').innerHTML = "";
+		});
 
 		 // If they wish to generate new keys.
 		$('#genRSAB').click(function() {
