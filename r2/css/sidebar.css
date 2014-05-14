@@ -1,0 +1,34 @@
+.panel {
+	width: 100%;
+	height: auto;
+	border: solid 2px;
+	margin-bottom: 10px;
+}
+.panel-title {
+	height: auto;
+	text-align: center;
+	background: orange;
+	font-size: 18px;
+}
+.buttons {
+	width: 100%;
+	height: 30px;
+}
+/* Tabs */
+
+#decryptTab {
+	display: none;
+}
+#RSATab {
+	display: none;
+}
+#encryptTab {
+	display: block;
+}
+button {
+	margin-left: 5px;
+}
+textarea {
+	width: 100%;
+	height: 200px;
+}
